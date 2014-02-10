@@ -20,6 +20,8 @@ require "sinatra/reloader" if development?
 
 require 'erb'
 
+require 'twitter'
+
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
@@ -43,3 +45,16 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+
+env_config = YAML.load_file(APP_ROOT.join('config', 'twitter.yaml'))
+
+env_config.each do |key, value|
+  ENV[key] = value
+end
+
+$client = Twitter::Streaming::Client.new do |config|
+  config.consumer_key = ENV['consumer_key']
+  config.consumer_secret = ENV['consumer_secret']
+  config.access_token = ENV['access_token']
+  config.access_token_secret = ENV['access_token_secret']
+end
