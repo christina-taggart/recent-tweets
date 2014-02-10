@@ -17,8 +17,10 @@ require 'logger'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
-
+require 'twitter'
 require 'erb'
+
+require 'yaml'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -43,3 +45,16 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+#include API keys 
+api_keys = YAML.load_file(APP_ROOT.join('config', 'keys.yml'))
+
+api_keys.each { |k, v| ENV[k] = v }
+
+CLIENT = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV['PUBLIC_KEY']
+  config.consumer_secret     = ENV['SECRET_KEY']
+end
+
+
+
+
