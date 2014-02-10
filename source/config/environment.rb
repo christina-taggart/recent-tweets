@@ -52,7 +52,7 @@ env_config.each do |key, value|
   ENV[key] = value
 end
 
-$client = Twitter::Streaming::Client.new do |config|
+$client = Twitter::REST::Client.new do |config|
   config.consumer_key = ENV['consumer_key']
   config.consumer_secret = ENV['consumer_secret']
   config.access_token = ENV['access_token']

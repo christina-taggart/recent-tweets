@@ -1,10 +1,45 @@
+body {
+  background-color: rgba(0, 155, 0, 0.3);
+}
+
 .container {
   margin: 20px auto;
   width: 600px;
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
+  background-color: rgba(0, 255, 0, 0.3);
+  border-radius: 25px;
 }
 
 th {
   text-align: left;
+}
+
+input {
+  box-shadow: inset 0 0 8px rgba(0, 255, 0, 0.3);
+  border-radius: 25px;
+}
+
+fieldset {
+  border-color: green;
+  border-radius: 25px;
+  color: green;
+}
+
+input.submit:hover {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+input.submit {
+  color: white;
+  background-color: green;
+}
+
+li {
+  margin: 10px 0px;
+}
+
+a:hover {
+  background-color: rgba(0, 155, 0, 0.3);
+  color: green;
 }
