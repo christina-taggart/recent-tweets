@@ -1,6 +1,13 @@
 <div class="container">
-  <% @tweets.each do |tweet| %>
-    <h1><%= tweet.text %></h1>
-    <h3><%= tweet.created_at %></h3>
-  <% end%>
+  <form action = '/' method="post">
+    <input type="text" name="username" placeholder="twitter handle">
+    <input type="submit" value="Get recent tweets">
+  </form>
+
+  <% if @tweets %>
+    <% @tweets.each do |tweet| %>
+      <h1><%= tweet.text %></h1>
+      <h3><%= tweet.created_at %></h3>
+    <% end %>
+  <% end %>
 </div>
