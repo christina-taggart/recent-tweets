@@ -9,9 +9,8 @@ end
 get '/:username' do
   @user = TwitterUser.find_by_username(params[:username])
   if @user
-    @tweets = @user.tweets
+    @tweets = @user.get_tweets
   else
-    authenticate
     build_user(params[:username])
   end
   erb :index

@@ -4,6 +4,10 @@
     <input type="submit" value="Get recent tweets">
   </form>
 
+  <% if @error %>
+    <h1><%= @error %></h1>
+  <% end %>
+
   <% if @tweets %>
     <% @tweets.each do |tweet| %>
       <h1><%= tweet.text %></h1>
