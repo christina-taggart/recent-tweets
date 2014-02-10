@@ -18,14 +18,10 @@ class TwitterUser < ActiveRecord::Base
   end
 
   def update_intervals
-    tweet1 = 0
-    tweet2 = 1
     intervals = []
-    20.times do
-      break unless self.tweets[tweet2]
-      intervals << self.tweets[tweet1].tweet_date - self.tweets[tweet2].tweet_date
-      tweet1 += 1
-      tweet2 += 1
+    20.times do |tweet|
+      break unless self.tweets[tweet + 1]
+      intervals << self.tweets[tweet].tweet_date - self.tweets[tweet + 1].tweet_date
     end
     @intervals = intervals
   end
