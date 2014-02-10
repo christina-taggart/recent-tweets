@@ -7,7 +7,12 @@ post '/' do
 end
 
 get '/:username' do
-  client = authenticate
-  @tweets = client.user_timeline(params[:username])
+  @user = TwitterUser.find_by_username(params[:username])
+  if @user
+    @tweets = @user.tweets
+  else
+    authenticate
+    build_user(params[:username])
+  end
   erb :index
 end

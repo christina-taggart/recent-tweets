@@ -7,7 +7,7 @@
   <% if @tweets %>
     <% @tweets.each do |tweet| %>
       <h1><%= tweet.text %></h1>
-      <h3><%= tweet.created_at %></h3>
+      <h3><%= tweet.tweet_date %></h3>
     <% end %>
   <% end %>
 </div>
