@@ -1,0 +1,8 @@
+<% if @tweets %>
+  <h2>Tweets by <%= @tweet_id %></h2>
+  <ul>
+  <% @tweets.each do |tweet| %>
+    <li><%= tweet.text %></li>
+  <% end %>
+  </ul>
+<% end %>
