@@ -5,9 +5,11 @@ end
 get '/:username' do
   @tweet_id = params[:username]
   @user = TwitterUser.find_by_username(params[:username])
-  if @user
+  if @user && !@user.tweet_stale?
+    p "FRESH TWEEEEET"
     @tweets = @user.tweets.limit(10)
   else
+    p "STALE TWEEEEET"
     @user = TwitterUser.create(username: params[:username])
     @tweets = @user.fetch_tweets!(@client)
   end
