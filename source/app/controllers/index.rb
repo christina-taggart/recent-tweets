@@ -3,12 +3,17 @@ get '/' do
 end
 
 get '/:username' do
-  # @user = $client.user(params[:username])
-  # p @user
-  # @tweets = @user.tweets.limit(10)
-  @tweets = $client.user_timeline(params[:username]).take(10)
-  p @tweets
-  p "**********************************************************"
+
+  if User.find_by_handle(params[:username])
+    user = User.find_by_handle(params[:username])
+  else
+    user = User.create(handle: params[:username])
+    tweets_from_twitter = $client.user_timeline(params[:username]).take(10)
+    tweets_from_twitter.each do |tweet|
+    Tweet.create(content: tweet.text, user_id: user.id )
+    end
+  end
+  @tweets = user.tweets
   erb :tweets
 end
 
