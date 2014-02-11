@@ -5,8 +5,13 @@ end
 get '/:username' do
   @user = TwitterUser.find_or_create_by(username: params[:username])
 
-  @user.fetch_tweets! if @user.tweets.length < 10
-  @tweets = @user.tweets.limit(10)
-  erb :usertweets
-  
+  begin
+    @user.fetch_tweets! if @user.tweets.length < 10 || @user.tweets_stale?
+    @tweets = @user.tweets.limit(10)
+    erb :usertweets
+  rescue
+
+    erb :error
+  end
+
 end
