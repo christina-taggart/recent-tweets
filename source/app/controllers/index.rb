@@ -5,13 +5,18 @@ end
 get '/:username' do
   @tweet_id = params[:username]
   @user = TwitterUser.find_by_username(params[:username])
-  if @user && !@user.tweet_stale?
-    p "FRESH TWEEEEET"
+
+  unless @user
+    @user = TwitterUser.create(username: params[:username])
+  end
+
+  unless @user.tweet_stale?
+    p "<<<<<<<<<<<<STILL RECENT USE CACHED"
     @tweets = @user.tweets.limit(10)
   else
-    p "STALE TWEEEEET"
-    @user = TwitterUser.create(username: params[:username])
-    @tweets = @user.fetch_tweets!(@client)
+    p "<<<<<<<<<<<<CACHE TOO OLD GET NEW"
+    @user.fetch_tweets!(@client)
+    @tweets = @user.tweets
   end
   erb :tweets_index
 end
