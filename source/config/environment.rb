@@ -18,6 +18,8 @@ require 'logger'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
+require 'twitter'
+
 require 'erb'
 
 # Some helper constants for path-centric logic
@@ -37,9 +39,17 @@ configure do
   set :views, File.join(Sinatra::Application.root, "app", "views")
 end
 
+CLIENT = Twitter::REST::Client.new do |config|
+    config.consumer_key    = "Ecu7MkMMMhEo8Y8D13I5A"
+    config.consumer_secret = "lvszfbKvpA4EzGnmN4g0aCQPQuSOfgsLBKTUGO9qaI"
+    config.access_token ="1963774604-5YXOc4hgmIseCblUYOGx5FuelDogC5kyV11GfPK"
+    config.access_token_secret ="0n94K6sWsVugKPMNTE1qo5lT02Jgp5Xfny6eRP1r4fmEX"
+end
 # Set up the controllers and helpers
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+
+
