@@ -2,8 +2,7 @@ tweets for this user: <%= @user %>
 
 <div class="container">
 
-  <% tweets = $client.user_timeline(@user, :count => 10) %>
-  <% tweets.each do |tweet| %>
-    <p><%= tweet.text %></p>
+  <% @all_tweets.each do |tweet| %>
+    <p><%= tweet %></p>
   <% end %>
 </div>
