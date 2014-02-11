@@ -7,12 +7,12 @@ post '/username' do
 end
 
 get '/:username' do
-  @user = $client.user(params[:username])
-  user = TwitterUser.create({twitter_id: @user.id, username: params[:username]})
+  @user = $client.user(params[:username].downcase)
+  user = TwitterUser.create({twitter_id: @user.id, username: params[:username].downcase})
   if user.id.nil?
     # pull tweets from the DB to save time
     @benchmark_time = Benchmark.realtime {
-      @tweets = TwitterUser.find_by_username(params[:username]).tweets.take(10)
+      @tweets = TwitterUser.find_by_username(params[:username].downcase).tweets.take(10)
     }
   else
     # pull tweets from twitter api and save to DB
