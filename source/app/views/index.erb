@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Welcome to TweetLand</h1>
-  <% @handle.each do |tweet|%>
-  <p><%= tweet.text %></p>
-  <%end%>
+  <% @tweets.each do |tweet| %>
+  <p><%= tweet.tweet_text %></p>
+  <% end %>
 </div>

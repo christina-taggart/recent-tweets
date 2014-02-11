@@ -41,9 +41,17 @@ end
 # Set up the controllers and helpers
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
+Dir[APP_ROOT.join('app', 'models', '*.rb')].each { |file| require file }
+
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
 
 # env_config
+
+env_config = YAML.load_file(APP_ROOT.join('config', 'twitter.yml'))
+
+env_config.each do |key, value|
+  ENV[key] = value
+end
 
