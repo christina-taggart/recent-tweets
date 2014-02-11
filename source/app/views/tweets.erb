@@ -4,12 +4,13 @@
   <h2 id='tweets-title'>Latest 10 Tweets for @<%= @username %></h2>
   <img id="profile-image" src=<%= @profile_image %>>
   <ol>
-    <% $client.user_timeline(@user.id, {count: 10}).each do |tweet| %>
+    <% @tweets.each do |tweet| %>
       <div class="tweets">
         <li><%= tweet.text %></li>
       </div>
     <% end %>
   </ol>
   <p><a href="/">Go back and search again</a></p>
+  <p>Your query took <%= @benchmark_time %> seconds</p>
 </div>
 </body>
