@@ -6,7 +6,7 @@ get '/:username' do
   @user = TwitterUser.find_or_create_by(username: params[:username])
 
   begin
-    @user.fetch_tweets! if @user.tweets.length < 10 || @user.tweets_stale?
+    @user.fetch_tweets! if @user.tweets.empty? || @user.tweets_stale?
     @tweets = @user.tweets.limit(10)
     erb :usertweets
   rescue
