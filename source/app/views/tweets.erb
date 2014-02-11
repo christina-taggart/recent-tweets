@@ -1,5 +1,8 @@
+<body style="background-image: url(<%= @profile_background_image %>)";>
 <div class="container">
-  <h2>Latest 10 Tweets for @<%= @username %></h2>
+  <img id='twitter-logo' src="/img/twitter.png">
+  <h2 id='tweets-title'>Latest 10 Tweets for @<%= @username %></h2>
+  <img id="profile-image" src=<%= @profile_image %>>
   <ol>
     <% $client.user_timeline(@user.id, {count: 10}).each do |tweet| %>
       <div class="tweets">
@@ -9,3 +12,4 @@
   </ol>
   <p><a href="/">Go back and search again</a></p>
 </div>
+</body>

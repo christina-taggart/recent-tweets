@@ -1,14 +1,19 @@
 body {
-  background-color: rgba(0, 155, 0, 0.3);
+  background-color: rgba(64, 153, 255, 0.4);
 }
 
 .container {
   margin: 20px auto;
   width: 600px;
   padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
-  background-color: rgba(0, 255, 0, 0.3);
+  border: 1px solid silver;
+  background-color: rgba(84, 84, 80, 0.6);
   border-radius: 25px;
+  color: rgba(242, 242, 242, 1.0);
+  text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  ;
 }
 
 th {
@@ -16,23 +21,23 @@ th {
 }
 
 input {
-  box-shadow: inset 0 0 8px rgba(0, 255, 0, 0.3);
+  box-shadow: inset 0 0 8px rgba(84, 84, 80, 0.3);
   border-radius: 25px;
 }
 
 fieldset {
-  border-color: green;
+  border-color: rgba(64, 153, 255, 1.0);
   border-radius: 25px;
-  color: green;
+  color: rgba(64, 153, 255, 1.0);
 }
 
 input.submit:hover {
-  background-color: rgba(0, 255, 0, 0.3);
+  background-color: rgba(84, 84, 80, 0.3);
 }
 
 input.submit {
   color: white;
-  background-color: green;
+  background-color: rgba(64, 153, 255, 1.0);
 }
 
 li {
@@ -40,6 +45,35 @@ li {
 }
 
 a:hover {
-  background-color: rgba(0, 155, 0, 0.3);
-  color: green;
+  background-color: rgba(222, 222, 222, 0.3);
+  color: rgba(242, 242, 242, 1.0);
+}
+
+a:visited {
+  color: rgba(64, 153, 255, 1.0);
+}
+
+#twitter-logo {
+  height: 50px;
+  display: inline-block;
+}
+
+#profile-image {
+  top: 7px;
+  left: 8px;
+  height: 60px;
+  display: inline-block;
+  position: relative;
+  border-radius: 20px;
+}
+
+#tweets-title {
+  display: inline-block;
+  text-decoration: underline;
+  margin: auto;
+  padding: auto;
+}
+
+.user-input {
+  background-color: rgba(64, 153, 255, 0.5);
 }
