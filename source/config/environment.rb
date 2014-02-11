@@ -52,19 +52,9 @@ env_config.each do |key, value|
   ENV[key] = value
 end
 
-@client = Twitter::REST::Client.new do |config|
+$client = Twitter::REST::Client.new do |config|
   config.consumer_key = ENV['TWITTER_KEY']
   config.consumer_secret = ENV['TWITTER_SECRET']
   config.access_token = ENV['OAUTH_TOKEN']
   config.access_token_secret = ENV['OAUTH_TOKEN_SECRET']
 end
-
-
-# client = Twitter::REST::Client.new do |config|
-#   config.consumer_key = "nOxesssKhXXcwqlLWVZx7g"
-#   config.consumer_secret = "avwlfsHgG26811ukbVDHZCWkuLk7Hem3pYCeJ9U5TE"
-#   config.access_token = "2337109140-oM20YLcV6wQAvSFT4TlPJhfXUBulkfnbk1YUqS8"
-#   config.access_token_secret = "yYbyxslIrbQaLLszRenkjRZsOHgYThWwRaAVVC71d2Ent"
-# end
-
-
